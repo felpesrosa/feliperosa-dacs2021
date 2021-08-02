@@ -6,31 +6,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class ItemVenda {
+public class Usuario {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private float valor;
-    private float valorDesconto;
+    private String usuario;
+    private String senha;
+
     public long getId() {
         return id;
     }
     public void setId(long id) {
         this.id = id;
     }
-    public float getValor() {
-        return valor;
+    public String getUsuario() {
+        return usuario;
     }
-    public void setValor(float valor) {
-        this.valor = valor;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
-    public float getValorDesconto() {
-        return valorDesconto;
+    public String getSenha() {
+        return senha;
     }
-    public void setValorDesconto(float valorDesconto) {
-        this.valorDesconto = valorDesconto;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
-
-    
     
 }

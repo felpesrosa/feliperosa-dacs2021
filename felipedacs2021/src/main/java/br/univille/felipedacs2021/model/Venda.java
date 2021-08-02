@@ -2,6 +2,7 @@ package br.univille.felipedacs2021.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,9 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import java.util.List;
-
-// essa classe deve ser persistida em um banco de dados
 @Entity
 public class Venda {
     @Id
@@ -27,11 +25,10 @@ public class Venda {
     private Date data;
     @Column(length = 15)
     private String cupom;
-
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "venda_id")
     private List<ItemVenda> colItemVenda = new ArrayList<ItemVenda>();
-    
+
     public long getId() {
         return id;
     }
@@ -55,5 +52,7 @@ public class Venda {
     }
     public void setCupom(String cupom) {
         this.cupom = cupom;
-    }   
+    }
+
+    
 }
