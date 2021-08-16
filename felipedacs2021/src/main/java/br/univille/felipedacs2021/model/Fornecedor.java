@@ -16,6 +16,8 @@ public class Fornecedor {
     private String usuario;
     private String senha;
     
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }

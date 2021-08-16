@@ -16,46 +16,46 @@ import javax.persistence.TemporalType;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private long id;
-   @Column(length = 1000)
-   private String descricao;
-   private float preco;
-   @Temporal(value = TemporalType.DATE)
-   private Date dataRegistro;
+    private long id;
+    @Column(length = 1000)
+    private String descricao;
+    private float preco;
+    @Temporal(value = TemporalType.DATE)
+    private Date dataRegistro;
 
-   @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE}) //efeito cascata
-   private Categoria categoria; 
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE}) //efeito cascata
+    private Categoria categoria; 
 
-public Date getDataRegistro() {
-    return dataRegistro;
-}
-public Categoria getCategoria() {
-    return categoria;
-}
-public void setCategoria(Categoria categoria) {
-    this.categoria = categoria;
-}
-public void setDataRegistro(Date dataRegistro) {
-    this.dataRegistro = dataRegistro;
-}
-public long getId() {
-    return id;
-}
-public void setId(long id) {
-    this.id = id;
-}
-public String getDescricao() {
-    return descricao;
-}
-public void setDescricao(String descricao) {
-    this.descricao = descricao;
-}
-public float getPreco() {
-    return preco;
-}
-public void setPreco(float preco) {
-    this.preco = preco;
-}
+    public Date getDataRegistro() {
+        return dataRegistro;
+    }
+    public Categoria getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+    public void setDataRegistro(Date dataRegistro) {
+        this.dataRegistro = dataRegistro;
+    }
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
+    }
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    public float getPreco() {
+        return preco;
+    }
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
 
-   
+
 }
