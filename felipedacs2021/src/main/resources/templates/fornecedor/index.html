@@ -15,14 +15,18 @@
                     <tr>
                         <th>Nome</th>
                         <th>Usuário</th>
+                        <th>ID</th>
                         <th>URL da API</th>
+                        <th>Autenticação da API</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="umfornecedor : ${listaFornecedores}">
                         <td th:text="${umfornecedor.nome}"></td>
                         <td th:text="${umfornecedor.usuario}"></td>
-                        <!-- <td th:text="${umfornecedor.urlAPIAuth"></td> -->
+                        <td th:text="${umfornecedor.id}"></td>
+                        <td th:text="${umfornecedor.urlAPI}"></td>
+                        <td th:text="${umfornecedor.urlAPIAuth}"></td>
                         <td>
                             <a th:href="@{'/fornecedor/alterar/'+${umfornecedor.id}}" class="btn btn-primary">Alterar</a>
                             <button class="btn btn-danger js-delete" 
