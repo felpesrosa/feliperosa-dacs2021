@@ -23,6 +23,9 @@ public class Produto {
     @Temporal(value = TemporalType.DATE)
     private Date dataRegistro;
 
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE})
+    private Fornecedor fornecedor;
+
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE}) //efeito cascata
     private Categoria categoria; 
 
@@ -56,6 +59,10 @@ public class Produto {
     public void setPreco(float preco) {
         this.preco = preco;
     }
-
-
-}
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+    public void setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
+    }
+}   

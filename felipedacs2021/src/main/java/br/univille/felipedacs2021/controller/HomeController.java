@@ -1,10 +1,6 @@
 package br.univille.felipedacs2021.controller;
 
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.TimeZone;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,17 +14,9 @@ public class HomeController {
     
     @GetMapping
     public ModelAndView index(){
-        
-        /*lógica doida*/
-        Date dataAgora = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yy");
-        SimpleDateFormat hora = new SimpleDateFormat("hh");
-        sdf.setTimeZone(TimeZone.getTimeZone("GMT-3:00"));
-        hora.setTimeZone(TimeZone.getTimeZone("GMT-3:00"));
-        
+                
         HashMap<String, String> dados = new HashMap<>();
-        dados.put("nomeapp", "App Java lindo!!");
-        dados.put("tempo", sdf.format(dataAgora)+", exatamente "+hora.format(dataAgora)+" horas e pouco");
+        dados.put("nomeapp", "Aplicação Java rodando!!");
         
         return new ModelAndView("home/index", dados);
     }
