@@ -1,44 +1,36 @@
 package br.univille.felipedacs2021.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import java.net.URL;
-import java.util.Scanner;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.io.IOException;
+
+import java.util.List;
+
+import br.univille.felipedacs2021.model.Fornecedor;
+import br.univille.felipedacs2021.service.FornecedorService;
 
 @Controller
 @RequestMapping("/import-produto")
 public class ImportadorProdutoController {
+    
+    @Autowired
+    private FornecedorService fornecedorService;
 
     @GetMapping
-    public ModelAndView index() {
+    public ModelAndView index(@ModelAttribute Fornecedor fornecedor){
 
-        try {
-            URL endereco = new URL("https://0650-186-237-248-5.ngrok.io/api/v1/produtos");
-            HttpURLConnection conn = (HttpURLConnection)endereco.openConnection();
+        List<Fornecedor> listaFornecedor = fornecedorService.getAllFornecedores();
 
-            conn.setRequestMethod("GET");
-            conn.connect();
-
-            int responseCode = conn.getResponseCode();
-            System.out.println(responseCode);
-
-            Scanner leitor = new Scanner(endereco.openStream());
-            while (leitor.hasNext()) {
-                System.out.println(leitor.nextLine());
-            }
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-
-        return new ModelAndView("importproduto/index");
+        return new ModelAndView("/importproduto/index", "listafornecedor", listaFornecedor);
     }
-    
+
+    @PostMapping(params="form")
+    public ModelAndView busca(Fornecedor fornecedor){
+        System.out.println(fornecedor.getId());
+        return new ModelAndView("/import-produto/index");
+    }
 }
