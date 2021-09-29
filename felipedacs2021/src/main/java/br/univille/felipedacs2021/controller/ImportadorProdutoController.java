@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
 
 import br.univille.felipedacs2021.model.Fornecedor;
+import br.univille.felipedacs2021.model.Produto;
 import br.univille.felipedacs2021.service.FornecedorService;
+import br.univille.felipedacs2021.service.ProdutoService;
 
 @Controller
 @RequestMapping("/import-produto")
@@ -19,6 +22,9 @@ public class ImportadorProdutoController {
     
     @Autowired
     private FornecedorService fornecedorService;
+
+    @Autowired
+    private ProdutoService produtoService;
 
     @GetMapping
     public ModelAndView index(@ModelAttribute Fornecedor fornecedor){
@@ -28,9 +34,17 @@ public class ImportadorProdutoController {
         return new ModelAndView("/importproduto/index", "listafornecedor", listaFornecedor);
     }
 
-    @PostMapping(params="form")
+    @PostMapping
     public ModelAndView busca(Fornecedor fornecedor){
-        System.out.println(fornecedor.getId());
-        return new ModelAndView("/import-produto/index");
+        
+        fornecedor = fornecedorService.getFornecedor(fornecedor.getId());
+        List<Produto> listaProduto = produtoService.importProduto(fornecedor);
+        List<Fornecedor> listaFornecedor = fornecedorService.getAllFornecedores();
+
+        HashMap<String,Object> dados = new HashMap<>();
+        dados.put("listafornecedor", listaFornecedor);
+        dados.put("listaproduto", listaProduto);
+
+        return new ModelAndView("/importproduto/index", dados);
     }
 }

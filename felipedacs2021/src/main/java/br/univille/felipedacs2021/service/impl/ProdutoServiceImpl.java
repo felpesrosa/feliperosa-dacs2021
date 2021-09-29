@@ -47,7 +47,7 @@ public class ProdutoServiceImpl implements ProdutoService{
 
         if (fornecedor != null) {
             try {
-                URL endereco = new URL(fornecedor.getUrlAPI() + "/api/v1/produtos");
+                URL endereco = new URL(fornecedor.getUrlAPI());
                 HttpURLConnection conn = (HttpURLConnection)endereco.openConnection();
                 conn.setRequestMethod("GET");
                 conn.connect();
