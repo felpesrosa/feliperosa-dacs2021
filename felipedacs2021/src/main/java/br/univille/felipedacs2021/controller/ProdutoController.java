@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.univille.felipedacs2021.model.Fornecedor;
 import br.univille.felipedacs2021.model.Produto;
-import br.univille.felipedacs2021.service.FornecedorService;
 import br.univille.felipedacs2021.service.ProdutoService;
+
+import br.univille.felipedacs2021.model.Fornecedor;
+import br.univille.felipedacs2021.service.FornecedorService;
+
+import br.univille.felipedacs2021.model.Categoria;
+import br.univille.felipedacs2021.service.CategoriaService;
 
 @Controller
 @RequestMapping("/produto")
@@ -25,6 +29,8 @@ public class ProdutoController {
     private ProdutoService service;
     @Autowired
     private FornecedorService fornecedorService;
+    @Autowired
+    private CategoriaService categoriaService;
     
     @GetMapping
     public ModelAndView index(){
@@ -41,6 +47,8 @@ public class ProdutoController {
         dados.put("produto",produto);
         List<Fornecedor> listaFornecedores = fornecedorService.getAllFornecedores();
         dados.put("listaFornecedores",listaFornecedores);
+        List<Categoria> listaCategorias = categoriaService.getAllCategorias();
+        dados.put("listaCategorias",listaCategorias);
         return new ModelAndView("produto/form",dados);
     }
 
@@ -58,6 +66,8 @@ public class ProdutoController {
         dados.put("produto",produto);
         List<Fornecedor> listaFornecedores = fornecedorService.getAllFornecedores();
         dados.put("listaFornecedores",listaFornecedores);
+        List<Categoria> listaCategorias = categoriaService.getAllCategorias();
+        dados.put("listaCategorias",listaCategorias);
 
         return new ModelAndView("produto/form",dados);
     }

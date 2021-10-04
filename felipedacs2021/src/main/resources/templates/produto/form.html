@@ -56,6 +56,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="slccategoria">Cagetoria:</label>
+                            <select class="form-control" id="slccategoria" th:field="*{categoria}">
+                                <option th:value="${umaCategoria.id}" 
+                                        th:text="${umaCategoria.nome}"
+                                        th:each="umaCategoria : ${listaCategorias}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
                 
                 <button class="btn btn-primary" type="submit">Enviar</button>
 
