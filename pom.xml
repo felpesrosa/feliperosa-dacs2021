@@ -22,6 +22,9 @@
   </properties>
   <build>
     <pluginManagement>
+      <pluginGroups>  
+          <pluginGroup>com.spotify</pluginGroup>  
+      </pluginGroups>
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
